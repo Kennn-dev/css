@@ -1,0 +1,41 @@
+extends ../layouts/common
+
+block navbar
+  nav.navbar.navbar-expand-lg.bg-light
+    a.navbar-brand(href='/') CodersX
+    .copllapse.nav-bar-collapse
+      ul.navbar-nav
+        li.navbar-item.active
+          a.nav-link(href='/users') User 
+        li.nav-item
+          a.nav-link(href='./create') Create
+  br
+block content
+  .container
+    h2 Users List
+    form(action='/users/search', method ='GET' class='d-flex')
+      input(type='text' placeholder='Search name ...',name='q' class="form-control mb-3 mr-3")
+      button.btn.btn-success.mb-3 Search
+    table.table.table-hover
+      thead.thead-dark
+        tr
+          th(scope ='col') Id
+          th(scope ='col') Name
+          th(scope ='col') Phone
+          th(scope ='col') Actions
+      tbody
+        each user in users
+          tr
+            th(scope='row')=user.id
+            td=user.name
+            td=user.phone
+            td
+              a(class="btn btn-success" href="/users/"+user.id)  Views
+
+    //- br
+    //- h1 User List :
+    //- ul
+    //-   each user in users
+    //-     li
+    //-       span= user.name
+    //-       a(href="/users/"+user.id)  Views

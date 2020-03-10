@@ -1,0 +1,32 @@
+extends ../../layouts/common
+block navbar
+	nav.navbar.navbar-expand-lg.bg-light
+		a.navbar-brand(href='/') Coders Tokyo
+		.copllapse.nav-bar-collapse
+			ul.navbar-nav
+				li.nav-item
+					a.nav-link(href='./create') Create
+	br
+block content
+		.form-gruop.container
+			h3 Create user
+
+			if errors
+				each error in errors
+					.alert.alert-danger= error
+
+			form(method='POST',action='/users/create', class="form-gruop")
+				.form-group
+					label(for='nameInput') Name 
+					input#nameInput(class='form-control', type='text',placeholder='Name user ...',name='name',value=values ? values.name : '')
+				.form-group
+					label(for='phoneInput').mt-2 Phone 
+					input#phoneInput(class='form-control', type='text',placeholder='Phone user ...',name='phone',value=values ? values.phone : '')
+				button.btn.btn-success.mt-3.mr-3 Create
+				a(class='btn btn-primary align-bottom' href="./") Back
+			
+		//- 	input(type='text',name='name', placeholder='Tên',class="form-control mr-3")
+		//- 	button.btn.btn-primary.mr-3 Create
+
+
+		//- a(href="./") Back
